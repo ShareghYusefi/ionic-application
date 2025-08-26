@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { TaskService } from '../services/task-service';
 import { Task } from '../interfaces/task';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,7 +23,8 @@ export class TaskFormComponent implements OnInit {
   constructor(
     private navCtrl: NavController,
     private service: TaskService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -50,10 +51,32 @@ export class TaskFormComponent implements OnInit {
     this.navCtrl.navigateRoot('/tabs/tab1');
   }
 
+  async presentToast(
+    position: 'top' | 'middle' | 'bottom',
+    message: string,
+    duration: number,
+    color?:
+      | 'primary'
+      | 'secondary'
+      | 'tertiary'
+      | 'success'
+      | 'warning'
+      | 'danger'
+  ) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: duration,
+      position: position,
+      color: color,
+    });
+
+    await toast.present();
+  }
+
   onSubmit() {
     this.service.addtask(this.task.value).subscribe(
       (response) => {
-        console.log('Task added!', response);
+        this.presentToast('top', 'Task added!', 2000, 'success');
         this.task.reset();
         this.navCtrl.navigateBack('tabs/tab1');
       },
