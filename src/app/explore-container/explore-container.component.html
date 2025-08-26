@@ -1,4 +1,16 @@
 <div id="container">
   <strong>{{ name }}</strong>
-  <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <p>
+    Explore
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://ionicframework.com/docs/components"
+      >UI Components</a
+    >
+  </p>
 </div>
+
+<ion-button [routerLink]="['/tabs/tab1']">Tasks</ion-button>
+<ion-button [routerLink]="['/tabs/tab2']">Home</ion-button>
+<ion-button [routerLink]="['/tabs/tab3']">Contact</ion-button>

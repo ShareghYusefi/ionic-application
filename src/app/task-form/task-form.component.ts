@@ -13,7 +13,7 @@ export class TaskFormComponent implements OnInit {
   ngOnInit() {}
 
   closeForm() {
-    this.navCtrl.navigateBack('/tabs/tab1');
+    this.navCtrl.navigateRoot('/tabs/tab1');
   }
 
   onSubmit() {
