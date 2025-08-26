@@ -1,9 +1,11 @@
+<!-- ios translucent feature header -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> Tasks </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<!-- non-translucent header for android -->
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
@@ -11,11 +13,23 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-list>
+    @for (task of tasks; track task; let index = $index) {
+    <ion-item>
+      <ion-label>{{ task.title }}</ion-label>
+      <ion-button color="light">
+        <ion-icon name="pencil-outline" color="success"></ion-icon>
+      </ion-button>
+      <ion-button color="danger">
+        <ion-icon name="trash" color="light"></ion-icon>
+      </ion-button>
+    </ion-item>
+    }
+  </ion-list>
+
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
     <ion-fab-button (click)="openForm()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>
