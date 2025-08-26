@@ -54,6 +54,7 @@ export class TaskFormComponent implements OnInit {
     this.service.addtask(this.task.value).subscribe(
       (response) => {
         console.log('Task added!', response);
+        this.task.reset();
         this.navCtrl.navigateBack('tabs/tab1');
       },
       (error) => {

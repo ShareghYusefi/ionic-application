@@ -18,7 +18,6 @@ export class Tab1Page implements OnInit {
     this.loadTasks();
   }
 
-  
   ionViewDidEnter() {
     this.loadTasks();
   }
@@ -26,6 +25,14 @@ export class Tab1Page implements OnInit {
   loadTasks() {
     this.service.gettasks().subscribe((response) => {
       this.tasks = response;
+    });
+  }
+
+  delete(id: number) {
+    this.service.deletetask(id).subscribe((response) => {
+      console.log('Task deleted!', response);
+      // update front end by removing task from tasks array
+      this.tasks = this.tasks.filter((task) => task.id !== response.id);
     });
   }
 
