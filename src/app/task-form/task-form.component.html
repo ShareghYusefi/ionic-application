@@ -13,6 +13,8 @@
           label="title"
           labelPlacement="floating"
           placeholder="Enter task title"
+          name="title"
+          [(ngModel)]="task.title"
         ></ion-input>
       </ion-item>
 
@@ -21,11 +23,18 @@
           label="Description"
           labelPlacement="floating"
           placeholder="Enter text"
+          name="description"
+          [(ngModel)]="task.description"
         ></ion-textarea>
       </ion-item>
 
       <ion-item>
-        <ion-select label="Floating label" label-placement="floating">
+        <ion-select
+          label="Priority Level"
+          label-placement="floating"
+          name="priority_level"
+          [(ngModel)]="task.priority_level"
+        >
           <ion-select-option value="Low">Low</ion-select-option>
           <ion-select-option value="Medium">Medium</ion-select-option>
           <ion-select-option value="High">High</ion-select-option>
