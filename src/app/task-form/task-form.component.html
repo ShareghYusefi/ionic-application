@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form>
+  <form [formGroup]="task">
     <ion-list>
       <ion-item>
         <ion-input
@@ -14,9 +14,20 @@
           labelPlacement="floating"
           placeholder="Enter task title"
           name="title"
-          [(ngModel)]="task.title"
+          formControlName="title"
         ></ion-input>
       </ion-item>
+      <ion-note
+        *ngIf="title?.invalid && (title?.dirty || title?.touched)"
+        color="danger"
+      >
+        <ng-container *ngIf="title?.hasError('required')">
+          Title is required.
+        </ng-container>
+        <ng-container *ngIf="title?.hasError('minlength')">
+          Title must be at least 3 characters long.
+        </ng-container>
+      </ion-note>
 
       <ion-item>
         <ion-textarea
@@ -24,16 +35,27 @@
           labelPlacement="floating"
           placeholder="Enter text"
           name="description"
-          [(ngModel)]="task.description"
+          formControlName="description"
         ></ion-textarea>
       </ion-item>
+      <ion-note
+        *ngIf="
+          description?.invalid && (description?.dirty || description?.touched)
+        "
+        color="danger"
+      >
+        <ng-container *ngIf="description?.hasError('required')">
+          Description is required.
+        </ng-container>
+      </ion-note>
 
       <ion-item>
         <ion-select
           label="Priority Level"
           label-placement="floating"
           name="priority_level"
-          [(ngModel)]="task.priority_level"
+          formControlName="priority_level"
+          required
         >
           <ion-select-option value="Low">Low</ion-select-option>
           <ion-select-option value="Medium">Medium</ion-select-option>
@@ -46,7 +68,12 @@
           <ion-button color="danger" (click)="closeForm()">Cancel</ion-button>
         </ion-buttons>
         <ion-buttons slot="end">
-          <ion-button color="success" (click)="onSubmit()">Save</ion-button>
+          <ion-button
+            color="success"
+            (click)="onSubmit()"
+            [disabled]="task.invalid"
+            >Save</ion-button
+          >
         </ion-buttons>
       </ion-item>
     </ion-list>
