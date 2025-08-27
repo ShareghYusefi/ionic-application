@@ -36,6 +36,17 @@ export class Tab1Page implements OnInit {
     });
   }
 
+  getColor(priority: string): string {
+    switch (priority) {
+      case 'High':
+        return 'danger';
+      case 'Medium':
+        return 'warning';
+      default:
+        return 'light';
+    }
+  }
+
   openForm() {
     this.navCtrl.navigateForward('/tabs/task-form');
   }

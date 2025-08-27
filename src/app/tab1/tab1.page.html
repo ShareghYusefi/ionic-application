@@ -13,19 +13,33 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
-    @for (task of tasks; track task; let index = $index) {
-    <ion-item>
-      <ion-label>{{ task.title }}</ion-label>
-      <ion-button color="light">
-        <ion-icon name="pencil-outline" color="success"></ion-icon>
-      </ion-button>
-      <ion-button color="danger" (click)="delete(task.id)">
-        <ion-icon name="trash" color="light"></ion-icon>
-      </ion-button>
-    </ion-item>
-    }
-  </ion-list>
+  @for (task of tasks; track task; let index = $index) {
+  <ion-card [color]="getColor(task.priority_level)">
+    <ion-card-header>
+      <ion-card-title>{{ task.title }}</ion-card-title>
+      <ion-card-subtitle>{{ task.priority_level }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ task.description }}
+      <ion-row class="ion-justify-content-end ion-margin-top">
+        <ion-button fill="outline" size="small" color="primary">
+          <ion-icon name="create-outline" color="success"></ion-icon>
+          Edit
+        </ion-button>
+        <ion-button
+          fill="outline"
+          size="small"
+          color="dark"
+          (click)="delete(task.id)"
+        >
+          <ion-icon name="trash" color="dark"></ion-icon>
+          Delete
+        </ion-button>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  }
 
   <ion-fab slot="fixed" horizontal="end" vertical="bottom">
     <ion-fab-button (click)="openForm()">
