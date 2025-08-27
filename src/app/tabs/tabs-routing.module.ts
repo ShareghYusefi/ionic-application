@@ -24,6 +24,10 @@ const routes: Routes = [
           import('../tab3/tab3.module').then((m) => m.Tab3PageModule),
       },
       {
+        path: 'task-form/:id',
+        component: TaskFormComponent,
+      },
+      {
         path: 'task-form',
         component: TaskFormComponent,
       },

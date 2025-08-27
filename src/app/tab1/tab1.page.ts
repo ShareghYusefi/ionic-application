@@ -47,7 +47,9 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  openForm() {
-    this.navCtrl.navigateForward('/tabs/task-form');
+  //  ? means makes a parameter optional
+  // ?? null coelecing
+  openForm(id?: number) {
+    this.navCtrl.navigateForward('/tabs/task-form/' + (id ?? ''));
   }
 }

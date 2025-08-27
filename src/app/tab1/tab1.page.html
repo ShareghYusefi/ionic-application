@@ -23,7 +23,7 @@
     <ion-card-content>
       {{ task.description }}
       <ion-row class="ion-justify-content-end ion-margin-top">
-        <ion-button fill="outline" size="small" color="primary">
+        <ion-button fill="outline" size="small" color="primary" (click)="openForm(task.id)">
           <ion-icon name="create-outline" color="success"></ion-icon>
           Edit
         </ion-button>
