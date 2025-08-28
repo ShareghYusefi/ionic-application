@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+  LocalNotifications,
+  PermissionStatus,
+  ScheduleOptions,
+  LocalNotificationSchema,
+} from '@capacitor/local-notifications';
 import { EmailComposer, HasAccountResult } from 'capacitor-email-composer';
 import {
   AndroidSettings,
@@ -65,5 +71,39 @@ export class Tab2Page {
       optionAndroid: androidOption,
       optionIOS: iosOption,
     });
+  }
+
+  async requestPermission() {
+    // request permission for sending notification
+    let permissionStatus: PermissionStatus =
+      await LocalNotifications.requestPermissions();
+    // if permissionStatus display value is Not 'granted'
+    if (permissionStatus.display != 'granted') {
+      console.log('Permission not granted!');
+    }
+  }
+
+  async scheduleNotification(seconds: number) {
+    try {
+      await LocalNotifications.schedule({
+        notifications: [
+          {
+            id: 1,
+            title: 'You have a Task coming up!',
+            body: 'Clean up the floors before the sun goes down.',
+            schedule: {
+              at: new Date(
+                // get current time
+                new Date().getTime() +
+                  // add 3 seconds
+                  seconds * 1000
+              ),
+            },
+          },
+        ],
+      });
+    } catch (error) {
+      console.error('Error scheduling notification: ', error);
+    }
   }
 }

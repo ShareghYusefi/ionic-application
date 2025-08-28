@@ -17,10 +17,16 @@
     <ion-label>Open Settings</ion-label>
   </ion-button>
   <ion-button expand="full" color="primary" (click)="openSetting('wifi')">
-    <ion-label>Open Settings</ion-label>
+    <ion-label>Open Wifi Settings</ion-label>
   </ion-button>
   <ion-button expand="full" color="primary" (click)="openSetting('bluetooth')">
-    <ion-label>Open Settings</ion-label>
+    <ion-label>Open Bluetooth Settings</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="primary" (click)="requestPermission()">
+    <ion-label>Request Permission</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="primary" (click)="scheduleNotification(3)">
+    <ion-label>Schedule Notification</ion-label>
   </ion-button>
 
   <ion-button (click)="nagivateToContact()">Contact Via Router</ion-button>
