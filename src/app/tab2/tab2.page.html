@@ -10,6 +10,10 @@
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-button expand="full" color="primary" (click)="openEmail()">
+    <ion-icon name="mail-outline"></ion-icon>
+    <ion-label>Email</ion-label>
+  </ion-button>
 
   <ion-button (click)="nagivateToContact()">Contact Via Router</ion-button>
   <app-explore-container name="Tab 2 page"></app-explore-container>
