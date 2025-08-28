@@ -11,8 +11,16 @@
     </ion-toolbar>
   </ion-header>
   <ion-button expand="full" color="primary" (click)="openEmail()">
-    <ion-icon name="mail-outline"></ion-icon>
     <ion-label>Email</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="primary" (click)="openSetting('settings')">
+    <ion-label>Open Settings</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="primary" (click)="openSetting('wifi')">
+    <ion-label>Open Settings</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="primary" (click)="openSetting('bluetooth')">
+    <ion-label>Open Settings</ion-label>
   </ion-button>
 
   <ion-button (click)="nagivateToContact()">Contact Via Router</ion-button>

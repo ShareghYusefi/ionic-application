@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { EmailComposer, HasAccountResult } from 'capacitor-email-composer';
 import {
-  EmailComposer,
-  HasAccountResult,
-  OpenOptions,
-} from 'capacitor-email-composer';
+  AndroidSettings,
+  IOSSettings,
+  NativeSettings,
+} from 'capacitor-native-settings';
 
 @Component({
   selector: 'app-tab2',
@@ -35,5 +36,34 @@ export class Tab2Page {
       .catch((error) => {
         console.error('Error checking email account: ', error);
       });
+  }
+
+  async openSetting(setting: string) {
+    let androidOption = AndroidSettings.ApplicationDetails;
+    let iosOption = IOSSettings.App;
+
+    switch (setting) {
+      case 'settings':
+        androidOption = AndroidSettings.Settings;
+        iosOption = IOSSettings.App;
+        break;
+      case 'wifi':
+        androidOption = AndroidSettings.Wifi;
+        iosOption = IOSSettings.WiFi;
+        break;
+      case 'bluetooth':
+        androidOption = AndroidSettings.Bluetooth;
+        iosOption = IOSSettings.Bluetooth;
+        break;
+
+      default:
+        console.log('Invalid Setting, will default to App settings.');
+        break;
+    }
+
+    await NativeSettings.open({
+      optionAndroid: androidOption,
+      optionIOS: iosOption,
+    });
   }
 }
