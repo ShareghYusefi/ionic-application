@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {
+  Camera,
+  CameraResultType,
+  CameraSource,
+  Photo,
+} from '@capacitor/camera';
+import {
   LocalNotifications,
   PermissionStatus,
   ScheduleOptions,
@@ -105,5 +111,33 @@ export class Tab2Page {
     } catch (error) {
       console.error('Error scheduling notification: ', error);
     }
+  }
+
+  public image: string | undefined | null = null;
+
+  // Take photo with camera and save to gallary
+  async takePicture() {
+    const photo: Photo = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Camera, // image comes from camera app
+      saveToGallery: true,
+    });
+
+    this.image = photo.webPath || null;
+  }
+
+  // pick an image from gallary, crop it, and show it in app
+  async cropPicture() {
+    const cropped: Photo = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true, // open crop editor
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Photos, // image comes from gallery app
+      saveToGallery: true,
+    });
+
+    this.image = cropped.webPath || null;
   }
 }

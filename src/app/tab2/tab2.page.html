@@ -28,6 +28,15 @@
   <ion-button expand="full" color="primary" (click)="scheduleNotification(3)">
     <ion-label>Schedule Notification</ion-label>
   </ion-button>
+  <ion-button expand="full" color="secondary" (click)="takePicture()">
+    <ion-label>Take Picture & Save</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="secondary" (click)="cropPicture()">
+    <ion-label>Crop Image from Gallary</ion-label>
+  </ion-button>
+  <div *ngIf="image">
+    <ion-img [src]="image"></ion-img>
+  </div>
 
   <ion-button (click)="nagivateToContact()">Contact Via Router</ion-button>
   <app-explore-container name="Tab 2 page"></app-explore-container>
