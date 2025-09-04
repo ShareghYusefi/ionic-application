@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NativeAudio } from '@capacitor-community/native-audio';
 import {
   Camera,
   CameraResultType,
@@ -139,5 +140,31 @@ export class Tab2Page {
     });
 
     this.image = cropped.webPath || null;
+  }
+
+  async preloadAudio() {
+    try {
+      await NativeAudio.preload({
+        assetId: 'snap',
+        assetPath: 'assets/Snap.mp3', // relative path
+        audioChannelNum: 1,
+        isUrl: false,
+      });
+      console.log('Audio preloaded!');
+    } catch (error) {
+      console.error('Error preloading audio: ', error);
+    }
+  }
+
+  async startAudio() {
+    await NativeAudio.play({
+      assetId: 'snap',
+    });
+  }
+
+  async stopAudio() {
+    await NativeAudio.stop({
+      assetId: 'snap',
+    });
   }
 }

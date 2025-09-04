@@ -34,6 +34,15 @@
   <ion-button expand="full" color="secondary" (click)="cropPicture()">
     <ion-label>Crop Image from Gallary</ion-label>
   </ion-button>
+  <ion-button expand="full" color="secondary" (click)="preloadAudio()">
+    <ion-label>Preload Audio File</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="secondary" (click)="startAudio()">
+    <ion-label>Start Audio</ion-label>
+  </ion-button>
+  <ion-button expand="full" color="secondary" (click)="stopAudio()">
+    <ion-label>Stop Audio</ion-label>
+  </ion-button>
   <div *ngIf="image">
     <ion-img [src]="image"></ion-img>
   </div>
