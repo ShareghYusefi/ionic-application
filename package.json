@@ -33,6 +33,7 @@
     "@ionic/angular": "^8.0.0",
     "capacitor-email-composer": "^7.0.2",
     "capacitor-native-settings": "^7.0.2",
+    "capacitor-video-player": "^6.0.2",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

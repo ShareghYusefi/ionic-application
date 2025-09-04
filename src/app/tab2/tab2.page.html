@@ -43,9 +43,15 @@
   <ion-button expand="full" color="secondary" (click)="stopAudio()">
     <ion-label>Stop Audio</ion-label>
   </ion-button>
+  <ion-button expand="full" color="secondary" (click)="playVideo()">
+    <ion-label>Play Video</ion-label>
+  </ion-button>
   <div *ngIf="image">
     <ion-img [src]="image"></ion-img>
   </div>
+
+  <!-- Mandatory Div for Video player -->
+  <div id="fullscreen_div"></div>
 
   <ion-button (click)="nagivateToContact()">Contact Via Router</ion-button>
   <app-explore-container name="Tab 2 page"></app-explore-container>

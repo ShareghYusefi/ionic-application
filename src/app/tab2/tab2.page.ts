@@ -19,6 +19,11 @@ import {
   IOSSettings,
   NativeSettings,
 } from 'capacitor-native-settings';
+import {
+  CapacitorVideoPlayer,
+  capVideoPlayerOptions,
+  capVideoPlayerResult,
+} from 'capacitor-video-player';
 
 @Component({
   selector: 'app-tab2',
@@ -166,5 +171,20 @@ export class Tab2Page {
     await NativeAudio.stop({
       assetId: 'snap',
     });
+  }
+
+  async playVideo() {
+    try {
+      const result: capVideoPlayerResult =
+        await CapacitorVideoPlayer.initPlayer({
+          mode: 'fullscreen',
+          url: 'https://www.youtube.com/watch?v=EFmxPMdBqmU',
+          playerId: 'fullscreen_div',
+        });
+
+      console.log('Video Player initialized: ', result);
+    } catch (error) {
+      console.error('Error preloading audio: ', error);
+    }
   }
 }
